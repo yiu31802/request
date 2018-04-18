@@ -1132,7 +1132,9 @@ Request.prototype.readResponseBody = function (response) {
 
     if (bufferLength) {
       debug('has body', self.uri.href, bufferLength)
-      response.body = Buffer.concat(buffers, bufferLength)
+      if(bufferLength < 2142827599){
+        response.body = Buffer.concat(buffers, bufferLength)
+      }
       if (self.encoding !== null) {
         response.body = response.body.toString(self.encoding)
       }
